@@ -7,6 +7,10 @@
             <h2 class="text-2xl font-semibold">Data Pemilih</h2>
             <a href="{{ route('admin.pemilih.create') }}" class="bg-yellow-400 text-white font-semibold px-4 py-2 rounded shadow hover:bg-yellow-500">+ Tambah Pemilih</a>
         </div>
+        <form action="{{ route('admin.pemilih.index') }}" method="GET" class="mb-4">
+    <input type="text" name="search" placeholder="Cari nama atau NIM..." value="{{ request('search') }}" class="px-4 py-2 border rounded w-1/3">
+    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Cari</button>
+</form>
 
         <table class="min-w-full border rounded-md overflow-hidden">
             <thead class="bg-gray-100 text-gray-700 font-semibold">

@@ -7,9 +7,19 @@ use Illuminate\Http\Request;
 
 class PemilihController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pemilihs = User::where('role', 'pemilih')->get();
+        $query = User::where('role', 'pemilih');
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nama', 'like', "%$search%")
+                  ->orWhere('nim', 'like', "%$search%");
+            });
+        }
+
+        $pemilihs = $query->get();
         return view('admin.pemilih.index', compact('pemilihs'));
     }
 
@@ -29,14 +39,13 @@ class PemilihController extends Controller
 
         User::create([
             'nama' => $request->nama,
-            'name' => $request->nama, // ← tambahin ini biar ngisi kolom 'name' juga
+            'name' => $request->nama, // ← tetap isi kolom 'name'
             'nim' => $request->nim,
             'email' => $request->email,
             'password' => $request->password, // plaintext sesuai config
             'role' => 'pemilih',
             'sudah_memilih' => false,
         ]);
-        
 
         return redirect()->route('admin.pemilih.index')->with('success', 'Data pemilih berhasil ditambahkan.');
     }
@@ -74,6 +83,4 @@ class PemilihController extends Controller
 
         return redirect()->route('admin.pemilih.index')->with('success', 'Data pemilih berhasil dihapus.');
     }
-  
-
 }
