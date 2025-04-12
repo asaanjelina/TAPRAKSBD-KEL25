@@ -11,13 +11,20 @@
     <header class="bg-blue-600 text-white shadow">
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <h1 class="text-xl md:text-2xl font-bold">Sistem E-Voting</h1>
-            <nav class="space-x-6 text-sm md:text-base font-medium">
-                <a href="{{ route('admin.dashboard') }}" class="hover:underline">Dashboard</a>
-                <a href="{{ route('admin.paslon.index') }}" class="hover:underline">Kelola Paslon</a>
-                <a href="{{ route('admin.pemilih.index') }}" class="hover:underline">Kelola Pemilih</a>
-                <a href="{{ route('admin.hasil') }}" class="hover:underline">Hasil Voting</a>
-                <a href="{{ route('admin.kandidat.index') }}" class="hover:underline">Kandidat</a>
-            </nav>
+            <nav class="flex items-center space-x-6 text-sm md:text-base font-medium">
+    <a href="{{ route('admin.dashboard') }}" class="hover:underline">Dashboard</a>
+    <a href="{{ route('admin.paslon.index') }}" class="hover:underline">Kelola Paslon</a>
+    <a href="{{ route('admin.pemilih.index') }}" class="hover:underline">Kelola Pemilih</a>
+    <a href="{{ route('admin.hasil') }}" class="hover:underline">Hasil Voting</a>
+    <a href="{{ route('admin.kandidat.index') }}" class="hover:underline">Kandidat</a>
+    <form action="{{ route('logout') }}" method="POST" class="inline">
+        @csrf
+        <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
+            Logout
+        </button>
+    </form>
+</nav>
+
         </div>
     </header>
 
