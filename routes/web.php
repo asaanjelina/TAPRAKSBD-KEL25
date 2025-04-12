@@ -62,14 +62,15 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 });
 
 // ==================== ROUTE UNTUK PEMILIH ====================
-Route::middleware(['auth', 'pemilih'])->prefix('pemilih')->name('pemilih.')->group(function () {
-    Route::get('/vote', [VoteController::class, 'index'])->name('vote.index');
-    Route::post('/vote', [VoteController::class, 'store'])->name('vote.store');
-
-    Route::get('/dashboard', [HomeController::class, 'pemilihDashboard'])->name('dashboard');
-    Route::get('/paslon', [PaslonController::class, 'index'])->name('paslon.index'); 
-    Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
+Route::prefix('pemilih')->middleware('pemilih')->name('pemilih.')->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'pemilih'])->name('dashboard');
+    Route::get('/vote', [\App\Http\Controllers\VoteController::class, 'index'])->name('vote.index');
+    Route::post('/vote', [\App\Http\Controllers\VoteController::class, 'store'])->name('vote.store');
+    Route::get('/paslon', [\App\Http\Controllers\PaslonController::class, 'index'])->name('paslon.index');
+    Route::get('/kandidat', [\App\Http\Controllers\KandidatController::class, 'index'])->name('kandidat.index');
 });
+
+
 
 
 // ==================== ROUTE AUTH TAMBAHAN ====================

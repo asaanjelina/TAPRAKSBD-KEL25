@@ -83,4 +83,10 @@ class PemilihController extends Controller
 
         return redirect()->route('admin.pemilih.index')->with('success', 'Data pemilih berhasil dihapus.');
     }
+
+    public function dashboard()
+{
+    return view('pemilih.dashboard');
+}
+
 }

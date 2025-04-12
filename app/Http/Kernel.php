@@ -47,7 +47,8 @@ class Kernel extends HttpKernel
     
         // Custom middleware
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
-        'pemilih' => \App\Http\Middleware\CekPemilih::class, // 🟢 Gunakan yang ini aja
+        'pemilih' => \App\Http\Middleware\PemilihMiddleware::class,
+
     ];
     
 }
